@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the associated manuscript."
+title: "OIR-FDD: Reliability Evaluation for Cross-System HVAC Fault Diagnosis"
+type: software
+authors:
+  - family-names: Tseng
+    given-names: Chun-Jan
+    orcid: "https://orcid.org/0000-0003-1611-4259"
+  - family-names: Su
+    given-names: Yi-Kai
+  - family-names: Chang
+    given-names: Ming-Han
+repository-code: "https://github.com/ottolan0728/hvac-reliability-oir-fdd"
+license: MIT
+version: "0.1.0"
+date-released: "2026-10-10"
