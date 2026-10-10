@@ -1,0 +1,127 @@
+\documentclass[preprint,12pt]{elsarticle}
+\usepackage{booktabs,tabularx,array,graphicx,float,amsmath,amssymb,siunitx,threeparttable,longtable}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\graphicspath{{figures/}}
+\begin{document}
+
+\begin{center}
+{\Large \textbf{Supplementary Material}}\\[0.5em]
+{\large Beyond Accuracy: Identifiability and Reliability Limits of Cross-System HVAC Fault Diagnosis under Distribution Shift}\\[0.8em]
+Chun-Jan Tseng, Yi-Kai Su, Ming-Han Chang
+\end{center}
+
+\section{S1. Baseline transfer and evidence hierarchy}
+The supplementary material preserves the full evidence hierarchy used in the main manuscript. The rooftop-unit (RTU) simulation-to-laboratory experiment is the primary reliability setting. The series fan-powered unit (SFPU) to parallel fan-powered unit (PFPU) experiment is a supporting class-specific transfer setting used to separate source identifiability from target degradation. The single-duct to dual-duct air-handling-unit candidate was screened out of the primary benchmark after provider-level duplicate-content defects were independently reproduced; it is therefore treated as a data-integrity finding rather than a negative transfer result.
+
+Table~\ref{tab:s1baseline} gives the complete eight-family RTU source-test and laboratory-target summary used by the main text. Values are saved five-seed means from the frozen C2A output; deterministic pipelines can have zero seed variation. The table is not a model-selection leaderboard because no target outcome was used to choose a model.
+
+\begin{table}[H]
+\centering
+\caption{RTU simulation-to-laboratory baseline summary. BA denotes balanced accuracy and ECE expected calibration error.}
+\label{tab:s1baseline}
+\resizebox{\textwidth}{!}{\input{supp_tables/rtu_baselines.tex}}
+\end{table}
+
+\section{S2. Cohort support, observability, and calibration support}
+OIR-FDD separates file-level intervention status from conditional diagnostic eligibility. For the SFPU-to-PFPU setting, the final class interpretation is based on the frozen eligible cohort and on source-side model behavior rather than target score alone. Table~\ref{tab:s2support} reports the retained class support used by the identifiability audit. Window counts are not interpreted as independent experiments; non-overlapping support counts are included to make the effective temporal support more visible.
+
+\begin{table}[H]
+\centering
+\caption{Class support and frozen interpretation states for the SFPU-to-PFPU experiment.}
+\label{tab:s2support}
+\resizebox{\textwidth}{!}{\input{supp_tables/fault_support.tex}}
+\end{table}
+
+Calibration uses source-only partitions. Table~\ref{tab:s2cal} reports the model-validation and calibration support for both empirical settings. The multiclass SFPU task has only one calibration episode for each fouling class, whereas the binary RTU task contains many abnormal calibration windows but substantially fewer independent normal supports. These support asymmetries are retained as limitations rather than treated as failures of a calibrator.
+
+\begin{table}[H]
+\centering
+\caption{Source-side calibration support. Non-overlap support counts are based on the frozen full-window support contract.}
+\label{tab:s2cal}
+\resizebox{\textwidth}{!}{\input{supp_tables/cal_support.tex}}
+\end{table}
+
+\section{S3. Selective prediction and class retention}
+The main manuscript highlights a descriptive 60\% target-ranked coverage example in which aggregate risk is zero while every retained fault class has zero accepted support. Table~\ref{tab:s3coverage} expands that diagnostic to 60--90\% ranked target coverage for the raw Random Forest in the SFPU-to-PFPU setting. Each row is the five-seed mean. These target-ranked slices are descriptive and are not deployable thresholds.
+
+\begin{table}[H]
+\centering
+\caption{Equal-coverage selective diagnostic for the SFPU-to-PFPU Random Forest. ``Cov.'' denotes class coverage among true class members.}
+\label{tab:s3coverage}
+\resizebox{\textwidth}{!}{\input{supp_tables/selective_coverage.tex}}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\textwidth]{SF1_class_retention.pdf}
+\caption{Class retention across descriptive target-ranked coverage slices for the SFPU-to-PFPU Random Forest. The dashed series is aggregate selective risk. The figure illustrates why decreasing aggregate risk does not imply that maintenance-relevant classes remain represented in the accepted set.}
+\label{fig:sf1}
+\end{figure}
+
+\section{S4. Persistent sensor loss and source-governed fallback}
+Persistent dropout removes one declared channel for an entire evaluation episode. The fallback analyses compare mean substitution, source-only dropout augmentation with a missingness indicator, and source-only exclusion of the missing channel. Table~\ref{tab:s4recovery} reports channel-and-seed-averaged recovery relative to mean substitution for the primary RTU setting under raw probabilities. Positive recovery in BA/F1 indicates improvement; for ECE/AURC, the sign must be interpreted with the error direction stated in the main manuscript.
+
+\begin{table}[H]
+\centering
+\caption{Source-governed fallback recovery in the RTU simulation-to-laboratory setting. The missingness-indicator fallback augments source training with persistent dropout and an indicator; the channel-exclusion fallback trains a source-only model without the missing channel.}
+\label{tab:s4recovery}
+\resizebox{\textwidth}{!}{\input{supp_tables/fallback_recovery.tex}}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{SF2_fallback_recovery.pdf}
+\caption{Fallback recovery across representative RTU models. (a) Recovery in balanced accuracy (BA). (b) Recovery in expected calibration error (ECE). (c) Recovery in area under the risk--coverage curve (AURC). All values are relative to mean substitution. Metric directions differ, so a favorable value in one panel does not imply recovery of the other reliability dimensions.}
+\label{fig:sf2}
+\end{figure}
+
+\section{S5. Source identifiability and severity diagnostics}
+Table~\ref{tab:s5evidence} expands the class-level interpretation in the main manuscript by reporting source-test and target recall/precision for the three source-selected model families. Valve stuck satisfies the source STRONG criterion across all three families and becomes weak on target. The fouling classes do not satisfy the same source criterion and therefore receive different IGTI outputs.
+
+\begin{table}[H]
+\centering
+\caption{Model-family evidence underlying the IGTI class interpretation.}
+\label{tab:s5evidence}
+\resizebox{\textwidth}{!}{\input{supp_tables/fault_evidence.tex}}
+\end{table}
+
+Pairwise source diagnostics further separate normal-versus-fault detection from mutual mechanism identification. Table~\ref{tab:s5pairwise} shows that both fouling classes are individually separable from normal operation on the source test set, while air-side versus water-side fouling remains near chance. Mean feature overlap is reported on the same frozen representation; exact shared vectors are zero and therefore do not explain the ambiguity.
+
+\begin{table}[H]
+\centering
+\caption{Selected source-test pairwise separability diagnostics. No target pairwise fitting or evaluation is used.}
+\label{tab:s5pairwise}
+\resizebox{\textwidth}{!}{\input{supp_tables/pairwise.tex}}
+\end{table}
+
+Severity analyses are retained as source-side diagnostics only. Ordered fouling levels are entangled with episode, role, and calendar assignment, so the main manuscript does not infer a monotonic dose-response law from these experiments. Full severity grids remain in the archived C2B/C2D machine-readable outputs.
+
+\section{S6. Semantic/graph provenance and complete ablation context}
+The semantic/graph stage tests whether functional alignment, component semantics, or graph structure repairs the reliability failures observed in the SFPU-to-PFPU setting. Table~\ref{tab:s6ablation} reports the clean target summaries used to interpret the ablation. Reader-facing terminology is used throughout the manuscript and supplement; archived development codes remain only in machine-readable project records and are not required to interpret the scientific results.
+
+\begin{table}[H]
+\centering
+\caption{Target clean-condition ablation summary. Graph rows use the graph-convolutional model family; raw/functional/semantic rows retain the source model family shown.}
+\label{tab:s6ablation}
+\resizebox{\textwidth}{!}{\input{supp_tables/ablation.tex}}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{SF3_graph_controls.pdf}
+\caption{Clean target BA and macro-F1 for the graph variants and structural controls. The shuffled-edge control outperforming the documented hybrid topology on clean scores weakens a topology-specific interpretation of the apparent gains; it is not proposed as a diagnostic solution.}
+\label{fig:sf3}
+\end{figure}
+
+The complete C2C evaluation additionally includes classwise results, equal-coverage diagnostics, persistent-dropout results, graph-edge provenance, parameter counts, and success-criterion audits. The main conclusion remains bounded: some clean metrics improve, but no documented graph variant satisfies the joint class-retention and missing-sensor reliability criteria.
+
+
+\section{S7. Reproducibility, validation, and artifact boundaries}
+The manuscript was assembled from frozen outputs rather than by rerunning training during manuscript preparation. The M2 artifact validation replayed 985 figure/table numeric cells from saved rows, retained 61 manuscript empirical numeric occurrences, and confirmed 75 unchanged prior evidence hashes. Figure/table generation used a plotting environment separate from the experiment runtimes and performed no model fitting, new inference, or new bootstrap sampling.
+
+The public reproducibility package is planned at \url{https://github.com/ottolan0728/hvac-reliability-oir-fdd}. The repository should contain code, environment files, source-data download instructions, split and observability manifests, IGTI/CRRA utilities, figure-generation scripts, derived result tables, and non-restricted audit artifacts. Raw provider data should not be redistributed when source licenses prohibit redistribution; manifests, hashes, and retrieval instructions are sufficient for those files.
+
+Machine-readable extracts accompanying this supplement include the RTU baseline summary, calibration support, equal-coverage class-retention summary, RTU fallback recovery, class-level interpretation evidence, pairwise separability diagnostics, and the semantic/graph ablation summary. These extracts are presentation copies of frozen results and do not constitute new estimates.
+
+\end{document}
