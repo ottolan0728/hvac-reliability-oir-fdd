@@ -1,0 +1,13 @@
+track,role,label,windows,nonoverlapping_supports,Experiment,Partition,Class
+A,source_model_validation,0,725,145,SFPU$\rightarrow$PFPU,Model validation,Normal
+A,source_model_validation,1,125,40,SFPU$\rightarrow$PFPU,Model validation,Air fouling
+A,source_model_validation,2,125,40,SFPU$\rightarrow$PFPU,Model validation,Water fouling
+A,source_model_validation,3,627,165,SFPU$\rightarrow$PFPU,Model validation,Valve stuck
+A,source_calibration,0,720,144,SFPU$\rightarrow$PFPU,Calibration,Normal
+A,source_calibration,1,60,21,SFPU$\rightarrow$PFPU,Calibration,Air fouling
+A,source_calibration,2,60,21,SFPU$\rightarrow$PFPU,Calibration,Water fouling
+A,source_calibration,3,749,201,SFPU$\rightarrow$PFPU,Calibration,Valve stuck
+C,source_model_validation,0,233,47,RTU sim.$\rightarrow$lab.,Model validation,Normal
+C,source_model_validation,1,7170,1434,RTU sim.$\rightarrow$lab.,Model validation,Abnormal
+C,source_calibration,0,228,46,RTU sim.$\rightarrow$lab.,Calibration,Normal
+C,source_calibration,1,7140,1428,RTU sim.$\rightarrow$lab.,Calibration,Abnormal
