@@ -1,0 +1,4 @@
+class_name,source_state,target_state,source_windows,target_windows,source_nonoverlap,target_nonoverlap,category
+Air-side fouling,WEAK,WEAK,185,461,61,188,SOURCE_WEAK_TARGET_WEAK
+Water-side fouling,UNRESOLVED,WEAK,186,462,61,189,INCONCLUSIVE_SUPPORT
+Valve stuck,STRONG,WEAK,1870,502,520,203,SOURCE_IDENTIFIABLE_TARGET_FAILURE
