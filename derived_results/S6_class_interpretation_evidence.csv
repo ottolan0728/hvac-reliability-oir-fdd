@@ -1,0 +1,19 @@
+class_name,role,model,config_id,recall_mean,precision_mean,strong,weak
+Air-side fouling,Source test,TCN,TCN_P0_B2,0.6713513513513514,0.285036497951848,False,False
+Air-side fouling,Source test,Transformer,Transformer_P0_B2,0.4335135135135135,0.2886292680626297,False,True
+Air-side fouling,Source test,XGBoost,XGBoost_P0_B1,0.4108108108108108,0.2567567567567567,False,True
+Air-side fouling,Target,TCN,TCN_P0_B2,0.0,0.0,False,True
+Air-side fouling,Target,Transformer,Transformer_P0_B2,0.1392624728850325,0.0884459849797804,False,True
+Air-side fouling,Target,XGBoost,XGBoost_P0_B1,0.2017353579175705,0.256198347107438,False,True
+Water-side fouling,Source test,TCN,TCN_P0_B2,0.3279569892473118,0.2583197202040485,False,True
+Water-side fouling,Source test,Transformer,Transformer_P0_B2,0.5655913978494624,0.2941616600495174,False,False
+Water-side fouling,Source test,XGBoost,XGBoost_P0_B1,0.5860215053763441,0.3132183908045977,False,False
+Water-side fouling,Target,TCN,TCN_P0_B2,0.0064935064935064,0.0491803278688524,False,True
+Water-side fouling,Target,Transformer,Transformer_P0_B2,0.1402597402597402,0.171232197362624,False,True
+Water-side fouling,Target,XGBoost,XGBoost_P0_B1,0.0,0.0,False,True
+Valve stuck,Source test,TCN,TCN_P0_B2,0.8920855614973263,0.8551381356792481,True,False
+Valve stuck,Source test,Transformer,Transformer_P0_B2,0.8915508021390375,0.8719775065244365,True,False
+Valve stuck,Source test,XGBoost,XGBoost_P0_B1,0.8903743315508021,0.8676393955184991,True,False
+Valve stuck,Target,TCN,TCN_P0_B2,0.0880478087649402,0.1104104480160654,False,True
+Valve stuck,Target,Transformer,Transformer_P0_B2,0.0215139442231075,0.1117876658860265,False,True
+Valve stuck,Target,XGBoost,XGBoost_P0_B1,0.0039840637450199,0.2222222222222222,False,True
