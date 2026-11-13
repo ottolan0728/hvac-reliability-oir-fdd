@@ -1,29 +1,20 @@
 # IGTI — Identifiability-Gated Transfer Interpretation
 
-IGTI is a deterministic audit algorithm used by OIR-FDD to prevent source-limited
-classes from being misreported as transfer failures.
+IGTI is a deterministic post-evaluation interpretation procedure. It does not fit to target labels or change classifier predictions.
 
-## Output states
+For each retained class, independently evaluate source-test and target class precision/recall across the three source-selected model families (five-seed means). The frozen support guard requires at least 30 eligible class windows and five nonoverlapping 300-minute supports in **both** domains.
 
-- `SOURCE_IDENTIFIABLE_TARGET_FAILURE`
-- `SOURCE_WEAK_TARGET_WEAK`
-- `INCONCLUSIVE_SUPPORT`
+Domain state:
+- **STRONG:** at least two families have recall >= 0.70 and precision >= 0.50.
+- **WEAK:** at least two families have recall < 0.50.
+- **UNRESOLVED:** all remaining situations.
 
-## Pseudocode
+The interpretation rules, after support passes, are:
+- STRONG source / WEAK target -> `SOURCE_IDENTIFIABLE_TARGET_FAILURE`
+- WEAK source / WEAK target -> `SOURCE_WEAK_TARGET_WEAK`
+- STRONG source / STRONG target -> `SOURCE_STRONG_TARGET_STRONG`
+- All other patterns -> `INCONCLUSIVE_SUPPORT`
 
-```text
-for each class c:
-    verify support and physical eligibility
-    if support is insufficient:
-        return INCONCLUSIVE_SUPPORT
+If the count/support guard fails, also return `INCONCLUSIVE_SUPPORT`. The last output is therefore a catchall interpretation, not exclusively a statement that sample size is insufficient. Cutoffs are frozen empirical protocol choices, not physical guarantees.
 
-    determine source_status(c)
-
-    if source_status(c) == STRONG and target recognition is weak:
-        return SOURCE_IDENTIFIABLE_TARGET_FAILURE
-
-    if source_status(c) == WEAK and target recognition is weak:
-        return SOURCE_WEAK_TARGET_WEAK
-
-    return INCONCLUSIVE_SUPPORT
-```
+See the manuscript's Algorithm 1 and supplementary class-support records for exact definitions. This README documents the published interpretation contract; it is **not** a validated executable implementation.
