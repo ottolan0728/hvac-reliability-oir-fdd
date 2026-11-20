@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite the associated manuscript."
-title: "OIR-FDD: Reliability Evaluation for Cross-System HVAC Fault Diagnosis"
+message: "This repository accompanies an unpublished manuscript; please cite the journal article after publication."
+title: "High-Confidence Fault Misses in HVAC Diagnosis Under Sensor Loss: A Source-Frozen Reliability and Decision Study"
 type: software
 authors:
   - family-names: Tseng
