@@ -1,40 +1,33 @@
-# OIR-FDD: Cross-System HVAC Fault Diagnosis Reliability
+# HVAC sensor-loss decision reliability: companion evidence repository
 
-Companion repository for the submission-stage manuscript:
+Companion repository for the author-review manuscript:
 
-*When Cross-System HVAC Fault Diagnosis Fails: Source-Class Discrimination, Fault Retention, and Sensor Availability*
+**High-Confidence Fault Misses in HVAC Diagnosis Under Sensor Loss: A Source-Frozen Reliability and Decision Study**
 
-Authors: Chun-Jan Tseng, Yi-Kai Su, and Ming-Han Chang.
+Authors: Chun-Jan Tseng, Yi-Kai Su (corresponding author), and Ming-Han Chang. Intended journal: *IEEE Access*. **This is an unpublished submission-stage manuscript; no acceptance, DOI, or publication is claimed.**
 
-## Scope
+## Current research question and evidence
 
-The Observability–Identifiability–Reliability framework (OIR-FDD) organizes physical eligibility, Identifiability-Gated Transfer Interpretation (IGTI), and Class-Retention Reliability Audit (CRRA). These are deterministic post-evaluation evidence audits, not newly trained fault classifiers. Two complementary equipment experiments are deliberately not treated as independent replications.
+The current paper examines how a source-frozen four-class HVAC diagnostic system changes its decisions when the reheat-valve-position input is persistently replaced by a source mean in transfer from simulated series to parallel fan-powered units. It traces the same target windows from correctly accepted fault decisions into accepted-normal, other-fault, or rejected states and evaluates a capacity-constrained review-priority rule.
 
-## Public evidence release
+In the shuffled-topology control, 42 initially correct, accepted valve-fault **model–seed decisions**, representing 35 distinct windows from one shared simulated setting, remain accepted but change to normal under the archived sensor-loss stress. These are **not** 42 independent fault events or 35 independent buildings. The low-normal-confidence review-priority heuristic is a **negative** result compared with an equal-budget label-blind uniform selection expectation at the reported 10% capacity setting. Two graph configurations respond differently.
 
-The `derived_results/` directory contains eight non-restricted frozen aggregate tables corresponding to Supplementary Tables S1–S8:
+The results do not establish a new classifier, an improved review policy, field energy savings, causal attribution to a single physical transducer, or a universal rule across buildings. Real-building building-automation records and rooftop-unit analyses provide different, non-equivalent context, **not independent replication** of the simulated reheat-position-loss mechanism.
 
-- `S1_RTU_baseline_summary.csv`
-- `S2_fault_support.csv`
-- `S3_calibration_support.csv`
-- `S4_equal_coverage_summary.csv`
-- `S5_fallback_recovery_RTU.csv`
-- `S6_class_interpretation_evidence.csv`
-- `S7_pairwise_separability.csv`
-- `S8_ablation_summary.csv`
+## What is publicly available
 
-These tables are presentation extracts from frozen experimental results; they do not constitute independent raw observations or new model runs.
+The existing `derived_results/` directory contains eight historical, non-restricted aggregate tables (S1–S8) from an earlier OIR-FDD evaluation. They **do not constitute a complete release of the present sensor-loss decision study**, and should not be described as its final Supplementary Tables or a complete reproduction of the current figures.
 
-## Repository structure and limitations
+The existing `algorithms/`, `data_manifest/`, `manuscript/`, `supplementary/` and `reproducibility/` directories contain historical methodological specifications, provenance notes, or source snapshots. These are preserved for traceability; they are **not authoritative copies of the current IEEE Access manuscript and supplement**. Older references to OIR-FDD, IGTI and CRRA identify historical evidence-audit procedures, not newly validated classifiers or the main novel method of this manuscript.
 
-- `algorithms/`: deterministic conceptual specifications; not executable implementations.
-- `data_manifest/`: initial provenance notes, not a complete machine-checkable split manifest.
-- `derived_results/`: non-restricted aggregate tables for inspecting reported evidence.
-- `manuscript/` and `supplementary/`: historical LaTeX source snapshots, **not** the authoritative current R54 submission package.
-- `reproducibility/`: methodological boundaries and evidence rules.
+The current authoritative manuscript, supplement, archived evaluation ledger and versioned analysis artifacts remain in the authors' controlled submission package. The public repository presently does **not** establish independently verified, end-to-end reproduction of the reported training, pairing, capacity-selection, and figure-generation pipeline.
 
-The original HVAC datasets must be obtained from their providers under applicable terms; no third-party raw dataset is redistributed here. The repository does **not** currently supply an end-to-end executable model-training reproduction, full environment lockfiles, or a verified complete split/eligibility manifest. Claims of complete computational reproducibility would therefore be inappropriate. The frozen manuscript submission and its supplementary PDF remain the authoritative reporting artifacts.
+## Data and release limitations
 
-## Citation
+Third-party raw HVAC data are not redistributed here; acquire the applicable datasets from their original providers under the respective terms. The authors plan to release permissible author-controlled analysis code, configurations, manifests, frozen evaluation outputs and trained-model artifacts after manuscript acceptance, subject to licensing, author verification and availability. **This is a planned release, not a completed public reproducibility claim.**
 
-See `CITATION.cff`; the final bibliographic record should be updated after publication.
+## Citation and status
+
+Please cite the associated manuscript once it has an authoritative publication record. The historical `CITATION.cff` metadata may not describe the current paper and should be read together with this README until updated. No final DOI or acceptance date has been assigned.
+
+Repository scope updated 20 November 2026 for the manuscript revision.
